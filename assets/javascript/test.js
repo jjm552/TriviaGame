@@ -1,7 +1,3 @@
-var count = 11;
-var counter=setInterval(timer, 1000);
-var index = 0;
-
 var questionArray = [
 {
 	question:"What is the most visited National Park in the US? ",
@@ -26,19 +22,6 @@ var questionArray = [
 }
 ];
 
-console.log(questionArray);
-// console.log(questionArray[0].choices[0]);
-
-function timer(){
-	count--;
-	if (count < 0){
-		clearInterval(counter);
-		return;
-	}else if (count == 0){
-		$("#timerSays").html("<h1>Time Out!</h1>");
-	};
-	$("#countDown").html("<h1>Time Left: " + count + "</h1");
-};
 
 function displayQuestion(){
 	// debugger;
@@ -50,36 +33,12 @@ function displayQuestion(){
 		for (var x = 0; x < questionArray[i].choices.length; x++){
 			var tChoice = questionArray[i].choices[x];
 			console.log(tChoice);
-			$("#questions").append("<ul>"+"<li class='radio-inline'>" + '<input type ="radio" name = "answer" value ="' + x + '"/>' + tChoice +"</ul>")
+			$("#questions").append("<li class='radio-inline'>" + '<input type ="radio" name = "answer" value ="' + x + '"/>' + tChoice)
 		}
-	}
+	};		
 };
-
-// function questionAnswer(){
-// 	var answerList = $("<ul>");
-// 	var item;
-// 	var tag = '';
-// 	// console.log(item);	
-// 	for (var i = 0; i < questionArray.length; i++){
-// 		var iChoice = questionArray[i];
-// 		console.log(iChoice);
-// 		for (var a = 0; a < questionArray[i].choices.length; a++){
-// 			var xChoice = questionArray[i].choices[a];
-// 			// console.log(xChoice)
-// 			item = $("<li class='radio-inline'>");
-// 			tag = '<input type ="radio" name = "answer" value ="' + a + '"/>';
-// 			tag += xChoice;
-// 			item.append(tag);
-// 			answerList.append(item);
-// 			}
-// 	}
-// 	return answerList;
-// }
-
-
 
 
 window.onload = function(){
-timer();
-displayQuestion();
-};
+	displayQuestion();
+}
