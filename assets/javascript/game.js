@@ -27,7 +27,7 @@ var questionArray = [
 ];
 
 console.log(questionArray);
-console.log(questionArray[0].choices[0]);
+// console.log(questionArray[0].choices[0]);
 
 function timer(){
 	count--;
@@ -49,28 +49,23 @@ function displayQuestions(){
 	}
 }
 
-function questionAnswer(index){
+function questionAnswer(){
 	var answerList = $("<ul>");
 	var item;
 	var tag = '';
-	console.log(item);	
+	// console.log(item);	
 	for (var i = 0; i < questionArray.length; i++){
-		for (var a = 0; a <questionArray[i].choices; a++){
-		var xChoice = questionArray[i].choices;
-		console.log(xChoice);
-		// var xChoice = questionArray[0].choices;
-		// console.log(xChoice);
-		// for (var x = 0; x < xChoice.length; x++){
-		// 	console.log(xChoice);
+		var iChoice = questionArray[i];
+		console.log(iChoice);
+		for (var a = 0; a < questionArray[i].choices.length; a++){
+			var xChoice = questionArray[i].choices[a];
+			// console.log(xChoice)
 			item = $("<li class='radio-inline'>");
 			tag = '<input type ="radio" name = "answer" value ="' + a + '"/>';
-			tag += xChoice[a];
+			tag += xChoice;
 			item.append(tag);
 			answerList.append(item);
 			}
-		// console.log(item)
-		// console.log(tag)
-		// console.log(answerList)
 	}
 	return answerList;
 }
