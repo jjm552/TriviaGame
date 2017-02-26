@@ -1,0 +1,48 @@
+body{
+	background: url(../images/bg0.jpg) no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	width: 960px;
+	height: 100%;
+	margin: auto;
+}
+
+
+h1,
+h2,
+ul,
+li{
+	color: white;
+}
+
+#titleBar{
+	text-align: center;
+}
+#timerDiv{
+	/*color: red;*/
+	/*position: relative;
+	top: 8px;
+	right: 16px;*/
+}
+
+#questions{
+	background: rgba(19,156,60,0.3);
+	padding: 10px;
+
+}
+
+#submit-quiz{
+	margin: 5px;
+}
+
+@media only screen and (max-width: 980px) {	
+}
+
+@media only screen and (max-width: 768px){
+
+}
+@media only screen and (max-width: 640px){
+	
+}

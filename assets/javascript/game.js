@@ -1,6 +1,9 @@
-var count = 11;
+var count = 121;
 var counter=setInterval(timer, 1000);
 var index = 0;
+var correct = 0;
+var incorrect = 0;
+var unanswered = 0;
 
 var questionArray = [
 {
@@ -35,10 +38,31 @@ function timer(){
 		clearInterval(counter);
 		return;
 	}else if (count == 0){
-		$("#timerSays").html("<h1>Time Out!</h1>");
+		$("#timerSays").html("<h1>Time's Up!</h1>");
+		for (var i = 0; i < questionArray.length; i++){
+		var userChoice =  $('input:radio[name=answer' + i + ']:checked').val();
+		console.log(userChoice);
+		if (userChoice == "undefined"){
+			unanswered++;
+		}
+		else if (userChoice != questionArray[i].correctChoice){
+			incorrect++;
+		}
+		else{
+			correct++;
+		}
+	}
+		$("#timerDiv").hide('slow');
+		$("#questionsDiv").hide('slow');
+		$("#submit-quiz").hide('slow');
+		$("#summary").html("<h2>Correct answers: " + correct + "</h2>");
+		$("#summary").append("<h2>Incorrect answers: " + incorrect + "</h2>");
+		$("#summary").append("<h2>Unanswered Questions: " + unanswered + "</h2>");
 	};
 	$("#countDown").html("<h1>Time Left: " + count + "</h1");
 };
+
+
 
 function displayQuestion(){
 	// debugger;
@@ -50,34 +74,43 @@ function displayQuestion(){
 		for (var x = 0; x < questionArray[i].choices.length; x++){
 			var tChoice = questionArray[i].choices[x];
 			console.log(tChoice);
-			$("#questions").append("<ul>"+"<li class='radio-inline'>" + '<input type ="radio" name = "answer" value ="' + x + '"/>' + tChoice +"</ul>")
+			$("#questions").append("<ul>"+"<li class='radio-inline'>" + '<input type ="radio" name = "answer' + i + '" value ="' + x + '"/>' + tChoice +"</ul>")
 		}
 	}
 };
 
-// function questionAnswer(){
-// 	var answerList = $("<ul>");
-// 	var item;
-// 	var tag = '';
-// 	// console.log(item);	
-// 	for (var i = 0; i < questionArray.length; i++){
-// 		var iChoice = questionArray[i];
-// 		console.log(iChoice);
-// 		for (var a = 0; a < questionArray[i].choices.length; a++){
-// 			var xChoice = questionArray[i].choices[a];
-// 			// console.log(xChoice)
-// 			item = $("<li class='radio-inline'>");
-// 			tag = '<input type ="radio" name = "answer" value ="' + a + '"/>';
-// 			tag += xChoice;
-// 			item.append(tag);
-// 			answerList.append(item);
-// 			}
-// 	}
-// 	return answerList;
-// }
+$("#submit-quiz").on("click", function(event){
+	event.preventDefault();
+	
+	for (var i = 0; i < questionArray.length; i++){
+		var userChoice =  $('input:radio[name=answer' + i + ']:checked').val();
+		console.log(userChoice);
+		if (userChoice == "undefined"){
+			unanswered++;
+		}
+		else if (userChoice != questionArray[i].correctChoice){
+			incorrect++;
+		}
+		else{
+			correct++;
+		}
+	}
+	console.log(correct);
+	console.log(incorrect);
+	console.log(unanswered);
 
 
 
+	$("#timerDiv").hide('slow');
+	$("#questionsDiv").hide('slow');
+	$("#submit-quiz").hide('slow');
+	$("#summary").html("<h2>Correct answers: " + correct + "</h2>");
+	$("#summary").append("<h2>Incorrect answers: " + incorrect + "</h2>");
+	$("#summary").append("<h2>Unanswered Questions: " + unanswered + "</h2>");
+
+
+
+})
 
 window.onload = function(){
 timer();
