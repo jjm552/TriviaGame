@@ -37,6 +37,10 @@ li{
 	margin: 5px;
 }
 
+#countDown{
+	position: fixed;
+}
+
 @media only screen and (max-width: 980px) {	
 }
 
